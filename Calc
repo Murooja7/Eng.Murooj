@@ -1,15 +1,23 @@
-function append(value) {
-  document.getElementById("display").value += value;
-}
-
-function clearDisplay() {
-  document.getElementById("display").value = "";
-}
-
 function calculate() {
-  try {
-    document.getElementById("display").value = eval(document.getElementById("display").value);
-  } catch {
-    document.getElementById("display").value = "Error";
+  let v1 = parseFloat(document.getElementById("input1").value) || 0;
+  let v2 = parseFloat(document.getElementById("input2").value) || 0;
+  let v3 = parseFloat(document.getElementById("input3").value) || 0;
+
+  // الأوزان
+  let result = (v1 * 0.5) + (v2 * 0.3) + (v3 * 0.2);
+
+  let resultBox = document.getElementById("result");
+
+  resultBox.innerText = `النتيجة: ${result.toFixed(2)}`;
+
+  // تغيير اللون حسب النتيجة
+  resultBox.classList.remove("good", "medium", "bad");
+
+  if (result >= 80) {
+    resultBox.classList.add("good");
+  } else if (result >= 50) {
+    resultBox.classList.add("medium");
+  } else {
+    resultBox.classList.add("bad");
   }
 }
